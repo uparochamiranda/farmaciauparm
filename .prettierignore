@@ -1,0 +1,7 @@
+node_modules
+.next
+.tools
+.artifacts
+package-lock.json
+test-results
+supabase/config.toml

@@ -1,0 +1,3 @@
+-- A unidade UPA Rocha Miranda e as regras globais são criadas na migration.
+-- Nenhum medicamento ou saldo fictício é inserido no banco oficial.
+-- Dados demonstrativos ficam exclusivamente em src/lib/demo.ts.
