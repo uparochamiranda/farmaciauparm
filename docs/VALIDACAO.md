@@ -15,3 +15,11 @@
 O teste de login com uma conta real não foi executado. A tentativa de criar uma conta temporária somente de leitura foi bloqueada pela revisão automática de aprovação, por ser uma alteração de acesso externo sem autorização específica. Nenhuma conta de teste foi criada. O proprietário pode autorizar o teste temporário ou provisionar o primeiro administrador conforme `supabase/bootstrap-admin.sql`.
 
 É necessário validar um arquivo real da farmácia, não fornecido nesta tarefa. PDFs digitalizados ou com estrutura ambígua são recusados por projeto. Deploy em hospedagem externa não foi realizado; as instruções estão no README.
+
+## Administração em /adminuparm
+
+- 76 testes unitários e 6 testes de navegador aprovados após a inclusão da administração.
+- Build de produção aprovado.
+- RPC de provisionamento: autorização ADMIN, rejeição de unidade inválida, perfil, vínculo e auditoria verificados em transação com rollback.
+- Edge Function publicada; requisição sem autenticação retorna HTTP 401. Security Advisors sem apontamentos.
+- Publicação na Vercel e primeiro acesso do administrador dependem da conexão da hospedagem. A criação completa por formulário com conta real ainda não foi exercitada.

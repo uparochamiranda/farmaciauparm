@@ -15,6 +15,9 @@ try {
   await client.query(
     await readFile(new URL('../supabase/tests/integrity.sql', import.meta.url), 'utf8'),
   );
+  await client.query(
+    await readFile(new URL('../supabase/tests/admin-users.sql', import.meta.url), 'utf8'),
+  );
   console.log('PASS: testes SQL de integridade, RLS e rollback. Fixtures revertidas.');
 } catch (error) {
   console.error(error.message);

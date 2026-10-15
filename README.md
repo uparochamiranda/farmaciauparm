@@ -207,6 +207,16 @@ Os testes Playwright cobrem proteção de rotas/API, filtros, revisão, navegaç
 
 O workflow GitHub Actions executa testes, lint, build e Playwright. O teste de banco remoto é deliberadamente separado para não expor credenciais administrativas ao CI.
 
+## Administração de usuários
+
+Acesse `/adminuparm` após entrar com um perfil ADMIN ativo. A página cria a conta Auth, o perfil e o vínculo com a unidade. Senhas iniciais têm no mínimo 12 caracteres; repasse-as por um canal seguro. Perfis e vínculos continuam editáveis em Configurações.
+
+O endpoint Next.js `/api/admin/users` valida sessão, papel e origem, e chama a Edge Function `admin-create-user` com o token do administrador. A função verifica novamente o usuário e seu perfil no banco antes de usar a chave administrativa disponível apenas no ambiente Supabase. Não configure uma service role no frontend ou na Vercel.
+
+A migration `provision_admin_users` salva perfil e unidade na mesma transação, com auditoria. A conta permanece bloqueada até as permissões serem salvas; falha de provisionamento cancela a criação da conta, e falha de ativação mantém o login bloqueado. Não há cadastro público ou promoção automática do primeiro visitante.
+
+Para outro ambiente, aplique as migrations e publique `supabase/functions/admin-create-user/index.ts` mantendo verificação JWT. O primeiro administrador ainda deve ser provisionado pelo proprietário conforme o script de bootstrap.
+
 ## Deploy
 
 Use uma hospedagem compatível com **Next.js Node.js**, como Vercel ou um servidor Node. Não faça exportação estática: login, importação e RPCs usam rotas dinâmicas.

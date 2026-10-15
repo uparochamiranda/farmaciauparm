@@ -20,7 +20,11 @@ export default function Login() {
         password: String(f.get('password')),
       });
       if (error) throw new Error('E-mail ou senha inválidos. Confira seus dados.');
-      router.replace('/');
+      router.replace(
+        new URLSearchParams(window.location.search).get('next') === '/adminuparm'
+          ? '/adminuparm'
+          : '/',
+      );
       router.refresh();
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Não foi possível entrar.');

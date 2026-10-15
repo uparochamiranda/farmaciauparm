@@ -50,3 +50,10 @@ test('layout tablet e celular sem transbordamento da página', async ({ page }) 
     ).toBe(true);
   }
 });
+
+test('admin exige autenticação e preserva o destino após login', async ({ page, request }) => {
+  await page.goto('/adminuparm');
+  await expect(page).toHaveURL(/login\?next=(%2F|\/)adminuparm/);
+  const r = await request.post('/api/admin/users', { data: {}, maxRedirects: 0 });
+  expect(r.status()).toBe(401);
+});

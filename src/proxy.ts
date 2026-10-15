@@ -10,7 +10,9 @@ export async function proxy(request: NextRequest) {
   if (!url || !key) {
     if (path.startsWith('/api/'))
       return NextResponse.json({ error: 'Autenticação indisponível.' }, { status: 401 });
-    return NextResponse.redirect(new URL('/login', request.url));
+    return NextResponse.redirect(
+      new URL(path === '/adminuparm' ? '/login?next=/adminuparm' : '/login', request.url),
+    );
   }
   const client = createServerClient(url, key, {
     cookies: {
@@ -28,7 +30,9 @@ export async function proxy(request: NextRequest) {
   if (!user) {
     if (path.startsWith('/api/'))
       return NextResponse.json({ error: 'Sessão expirada. Entre novamente.' }, { status: 401 });
-    return NextResponse.redirect(new URL('/login', request.url));
+    return NextResponse.redirect(
+      new URL(path === '/adminuparm' ? '/login?next=/adminuparm' : '/login', request.url),
+    );
   }
   return response;
 }
