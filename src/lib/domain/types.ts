@@ -1,0 +1,93 @@
+export type Role = 'ADMIN' | 'FARMACIA' | 'GESTAO';
+export type Situation = 'CRITICO' | 'ATENCAO' | 'NORMAL' | 'ZERADO' | 'SEM_CONSUMO';
+export type Medication = {
+  id: string;
+  codigo: string | null;
+  nome: string;
+  principio_ativo: string;
+  concentracao: string;
+  unidade_concentracao: string;
+  forma_farmaceutica: string;
+  apresentacao: string;
+  volume: string;
+  unidade_volume: string;
+  grupo: string;
+  ativo: boolean;
+};
+export type Alias = {
+  id: string;
+  alias: string;
+  alias_normalizado: string;
+  medicamento_id: string;
+  ativo: boolean;
+};
+export type ImportRow = {
+  line: number;
+  code: string;
+  name: string;
+  presentation: string;
+  quantity: number | null;
+  consumption: number | null;
+  error?: string;
+  raw: Record<string, unknown>;
+};
+export type Match = {
+  medicamento_id: string | null;
+  tipo_correspondencia: 'CODIGO' | 'ALIAS' | 'NOME_NORMALIZADO' | 'MANUAL' | 'NAO_IDENTIFICADO';
+  status: 'OK' | 'PENDENTE' | 'ERRO' | 'IGNORADO';
+  motivo_pendencia: string | null;
+  confianca: number;
+  sugestao_id?: string | null;
+};
+export type Stock = {
+  id: string;
+  unidade_id: string;
+  medicamento_id: string;
+  quantidade: number;
+  cmd: number;
+  dias_cobertura: number | null;
+  situacao: Situation;
+  updated_at: string;
+  medicamentos: Medication;
+  limite?: number;
+};
+export type ImportItem = Match & {
+  id: string;
+  importacao_id: string;
+  numero_linha: number;
+  codigo_importado: string;
+  nome_importado: string;
+  apresentacao_importada: string;
+  quantidade_importada: number | null;
+  consumo_importado: number | null;
+  linha_original: Record<string, unknown>;
+};
+export type ImportRecord = {
+  id: string;
+  nome_arquivo: string;
+  status: string;
+  total_linhas: number;
+  created_at: string;
+  completed_at: string | null;
+  usuario_id: string;
+  unidade_id: string;
+  identificados_codigo: number;
+  identificados_alias: number;
+  identificados_nome: number;
+  pendentes: number;
+  erros: number;
+  storage_path: string;
+  tipo_arquivo: string;
+};
+export type Rule = {
+  id: string;
+  unidade_id: string | null;
+  medicamento_id: string | null;
+  nome: string;
+  tipo_regra: Situation;
+  dias_minimos: number;
+  dias_maximos: number | null;
+  cor: string;
+  prioridade: number;
+  ativo: boolean;
+};
