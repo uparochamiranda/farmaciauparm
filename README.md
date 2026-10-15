@@ -217,6 +217,14 @@ A migration `provision_admin_users` salva perfil e unidade na mesma transação,
 
 Para outro ambiente, aplique as migrations e publique `supabase/functions/admin-create-user/index.ts` mantendo verificação JWT. O primeiro administrador ainda deve ser provisionado pelo proprietário conforme o script de bootstrap.
 
+## Publicação atual
+
+Sistema: https://farmaciauparm.vercel.app · Administração: https://farmaciauparm.vercel.app/adminuparm · Troca da própria senha: https://farmaciauparm.vercel.app/conta.
+
+Publicado na conta Vercel do proprietário, com Next.js e Node.js 24.x e Supabase oficial. O primeiro administrador foi provisionado e o login real foi validado. Credenciais não pertencem ao repositório.
+
+A conexão automática GitHub → Vercel requer que o proprietário adicione a conexão de login GitHub nas configurações da conta Vercel. A publicação atual foi enviada pela CLI a partir do workspace sincronizado.
+
 ## Deploy
 
 Use uma hospedagem compatível com **Next.js Node.js**, como Vercel ou um servidor Node. Não faça exportação estática: login, importação e RPCs usam rotas dinâmicas.
@@ -234,6 +242,6 @@ Algumas hospedagens serverless limitam o corpo da requisição abaixo de 10 MB. 
 
 - A estrutura dos arquivos reais da farmácia não foi fornecida. O parser aceita os formatos documentados e bloqueia estruturas ambíguas; valide um arquivo real antes do uso operacional.
 - Não há OCR nem inferência clínica por IA.
-- O primeiro administrador e as contas reais precisam ser criados pelo responsável.
+- O primeiro administrador está provisionado; demais contas são criadas por um ADMIN em `/adminuparm`.
 - Não há estoque fictício no banco oficial nem saldo inicial presumido.
-- Não há envio de e-mail, movimentação automática entre unidades ou publicação em hospedagem externa nesta entrega.
+- Não há envio de e-mail nem movimentação automática entre unidades nesta entrega.

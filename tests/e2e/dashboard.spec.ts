@@ -57,3 +57,8 @@ test('admin exige autenticação e preserva o destino após login', async ({ pag
   const r = await request.post('/api/admin/users', { data: {}, maxRedirects: 0 });
   expect(r.status()).toBe(401);
 });
+
+test('troca de senha exige autenticação', async ({ page }) => {
+  await page.goto('/conta');
+  await expect(page).toHaveURL(/login/);
+});

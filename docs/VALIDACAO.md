@@ -12,9 +12,9 @@
 
 ## Validação ainda necessária
 
-O teste de login com uma conta real não foi executado. A tentativa de criar uma conta temporária somente de leitura foi bloqueada pela revisão automática de aprovação, por ser uma alteração de acesso externo sem autorização específica. Nenhuma conta de teste foi criada. O proprietário pode autorizar o teste temporário ou provisionar o primeiro administrador conforme `supabase/bootstrap-admin.sql`.
+O login real do primeiro administrador foi validado na URL pública em 15/10/2026, incluindo dashboard, página administrativa, lista de usuários e validação da API. Nenhuma conta temporária de teste foi criada.
 
-É necessário validar um arquivo real da farmácia, não fornecido nesta tarefa. PDFs digitalizados ou com estrutura ambígua são recusados por projeto. Deploy em hospedagem externa não foi realizado; as instruções estão no README.
+É necessário validar um arquivo real da farmácia, não fornecido nesta tarefa. PDFs digitalizados ou com estrutura ambígua são recusados por projeto. Sistema publicado em https://farmaciauparm.vercel.app na Vercel.
 
 ## Administração em /adminuparm
 
@@ -22,4 +22,5 @@ O teste de login com uma conta real não foi executado. A tentativa de criar uma
 - Build de produção aprovado.
 - RPC de provisionamento: autorização ADMIN, rejeição de unidade inválida, perfil, vínculo e auditoria verificados em transação com rollback.
 - Edge Function publicada; requisição sem autenticação retorna HTTP 401. Security Advisors sem apontamentos.
-- Publicação na Vercel e primeiro acesso do administrador dependem da conexão da hospedagem. A criação completa por formulário com conta real ainda não foi exercitada.
+- Publicação na Vercel e primeiro acesso do administrador concluídos e verificados. A criação completa de outra conta por formulário ainda não foi exercitada.
+- Bootstrap inicial encerrado: função temporária substituída por resposta HTTP 410; nenhuma senha ou chave privada foi adicionada ao Git.
