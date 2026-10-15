@@ -111,6 +111,11 @@ export function Workspace({
             </div>
           </div>
           <div className="topbar-actions">
+            {!demo && profile.perfil === 'ADMIN' && (
+              <Link className="demo-pill" href="/adminuparm">
+                Administrar usuários
+              </Link>
+            )}
             <select
               className="header-unit"
               aria-label="Unidade de atendimento"
