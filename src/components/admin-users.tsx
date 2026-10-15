@@ -73,6 +73,7 @@ export function AdminUsers({ units }: { units: { id: string; nome: string }[] })
           <ArrowLeft size={16} /> Voltar ao painel
         </Link>
       </header>
+      <Link href="/conta">Alterar minha senha</Link>
       {error && (
         <p role="alert" className="error-message">
           {error}

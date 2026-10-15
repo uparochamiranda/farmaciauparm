@@ -111,6 +111,11 @@ export function Workspace({
             </div>
           </div>
           <div className="topbar-actions">
+            {!demo && (
+              <Link className="demo-pill" href="/conta">
+                Minha senha
+              </Link>
+            )}
             {!demo && profile.perfil === 'ADMIN' && (
               <Link className="demo-pill" href="/adminuparm">
                 Administrar usuários
