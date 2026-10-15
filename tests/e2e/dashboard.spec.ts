@@ -2,7 +2,9 @@ import { test, expect } from '@playwright/test';
 test('protege dashboard e API sem autenticação', async ({ page, request }) => {
   await page.goto('/');
   await expect(page).toHaveURL(/login/);
-  expect((await request.get('/api/data?resource=stock')).status()).toBe(401);
+  const response = await request.get('/api/data?resource=stock', { maxRedirects: 0 });
+  expect(response.status()).toBe(401);
+  expect(response.headers()['content-type']).toContain('application/json');
 });
 test('dashboard segue estrutura e filtros funcionam', async ({ page }) => {
   await page.goto('/demo');

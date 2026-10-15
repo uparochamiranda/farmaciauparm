@@ -7,7 +7,11 @@ export async function proxy(request: NextRequest) {
   if (path === '/demo' || path === '/login' || path.startsWith('/auth/')) return response;
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL,
     key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) return NextResponse.redirect(new URL('/login', request.url));
+  if (!url || !key) {
+    if (path.startsWith('/api/'))
+      return NextResponse.json({ error: 'Autenticação indisponível.' }, { status: 401 });
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
   const client = createServerClient(url, key, {
     cookies: {
       getAll: () => request.cookies.getAll(),
